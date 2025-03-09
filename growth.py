@@ -31,7 +31,7 @@ if uploaded_files:
 
         if file_ext == ".csv":
             df = pd.read_csv(file)
-        elif file_ext == "xlsx":
+        elif file_ext == ".xlsx":
             df = pd.read_excel(file) 
         else:
             st.error(f"unsupported file type: {file_ext}")
@@ -76,7 +76,7 @@ if uploaded_files:
             if conversion_type == "CSV":
                 df.to.csv(buffer, index=False)
                 file_name = file.name.replace(file_ext, ".csv")
-                mine_type= "text/csv"
+                mime_type= "text/csv"
 
             elif conversion_type == "Excel":
                 df.to_excel(buffer,index=False)
@@ -88,7 +88,7 @@ if uploaded_files:
                 label=f"Download {file.name} as {conversion_type}",
                 data=buffer,
                 file_name=file_name,
-                mine=mine_type
+                mime=mime_type
             )
 st.success("All files processed successfully!")
 
